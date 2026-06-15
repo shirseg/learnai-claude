@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(claude-api)",
+      "Skill(claude-api:*)",
+      "mcp__d0bc41a0-ce95-479b-bfc7-6b2e4dfef83c__get_design_context",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "mcp__Claude_in_Chrome__get_page_text",
+      "Bash(curl -s http://localhost:5500/)",
+      "Bash(npx sass *)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(New-Item -ItemType Directory -Force \"C:\\\\Projects\\\\AVR\\\\code\\\\LearnAI Claude\\\\.github\\\\workflows\")",
+      "Bash(Out-Null)",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Projects\\\\AVR\\\\code\\\\LearnAI Claude\\\\.github\\\\workflows\")",
+      "PowerShell(\"done\")",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

@@ -1,0 +1,326 @@
+// ─── Design tokens + scale helper ────────────────────────────────────────────
+// All tokens are CSS custom properties so they can be overridden at runtime.
+// Scale: 1 design-px (1920-px canvas) = calc(X * var(--px))
+
+:root {
+  // colours
+  --purple:    #1E158D;
+  --text:      #0F0C3F;
+  --border:    #A2A4B8;
+  --chart:     #7B59CA;
+  --bg-btn:    rgba(236, 232, 255, 0.8);
+  --bg-header: rgba(236, 232, 255, 0.6);
+  --bg-icon:   rgba(236, 232, 255, 0.2);
+
+  // scale
+  --px: calc(100vw / 1920);
+}
+
+// ─── Reset ────────────────────────────────────────────────────────────────────
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text);
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(72 * var(--px));
+  background: var(--bg-header);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  padding: 0 calc(24 * var(--px));
+  gap: calc(74 * var(--px));
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: calc(12 * var(--px));
+    flex-shrink: 0;
+  }
+
+  .hamburger {
+    width: calc(48 * var(--px));
+    height: calc(48 * var(--px));
+    background: var(--bg-icon);
+    backdrop-filter: blur(4px);
+    border-radius: calc(8 * var(--px));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(5 * var(--px));
+    cursor: pointer;
+    border: none;
+
+    span {
+      display: block;
+      width: calc(20 * var(--px));
+      height: calc(2 * var(--px));
+      background: var(--text);
+      border-radius: 1px;
+    }
+  }
+
+  .logo {
+    height: calc(36 * var(--px));
+    width: auto;
+  }
+
+  .page-title {
+    display: flex;
+    gap: calc(12 * var(--px));
+    font-size: calc(30 * var(--px));
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .header-controls {
+    position: absolute;
+    right: calc(24 * var(--px));
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: calc(16 * var(--px));
+  }
+}
+
+// ─── Header control pieces ────────────────────────────────────────────────────
+.session-code {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--px));
+  border-left: 1px solid var(--border);
+  padding: 0 0 0 calc(12 * var(--px));
+  height: calc(48 * var(--px));
+  white-space: nowrap;
+
+  &-label { font-size: calc(24 * var(--px)); }
+  &-value  { font-size: calc(30 * var(--px)); font-weight: 500; }
+}
+
+.viewers {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--px));
+  border-left: 1px solid var(--border);
+  padding: 0 calc(12 * var(--px));
+  height: calc(48 * var(--px));
+  white-space: nowrap;
+
+  img { width: calc(24 * var(--px)); height: calc(24 * var(--px)); object-fit: contain; }
+
+  &-text { font-size: calc(24 * var(--px)); }
+}
+
+.qr-wrap {
+  width: calc(88 * var(--px));
+  height: calc(48 * var(--px));
+  border-left:  1px solid var(--border);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: calc(48 * var(--px));
+  height: calc(48 * var(--px));
+  background: var(--bg-icon);
+  border: 1px solid var(--border);
+  border-radius: calc(8 * var(--px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  svg, img {
+    width: calc(40 * var(--px));
+    height: calc(40 * var(--px));
+    object-fit: contain;
+  }
+}
+
+.close-btn {
+  width: calc(48 * var(--px));
+  height: calc(48 * var(--px));
+  background: var(--purple);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+// ─── Main content (centred between header and footer bar) ─────────────────────
+.content {
+  position: absolute;
+  inset: calc(72 * var(--px)) 0 calc(80 * var(--px)) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(32 * var(--px));
+}
+
+.main-title {
+  font-size: calc(48 * var(--px));
+  line-height: calc(54 * var(--px));
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.connected {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--px));
+  white-space: nowrap;
+  margin-top: calc(-16 * var(--px));
+
+  img { height: calc(28 * var(--px)); width: auto; }
+
+  &-text {
+    font-size: calc(36 * var(--px));
+    line-height: 1;
+
+    strong { font-weight: 500; }
+    em     { font-style: normal; font-size: calc(32 * var(--px)); }
+  }
+}
+
+// ─── Questions row ────────────────────────────────────────────────────────────
+.questions {
+  display: flex;
+  gap: calc(407 * var(--px));
+  align-items: flex-start;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-label {
+    display: flex;
+    align-items: center;
+    gap: calc(8 * var(--px));
+    font-size: calc(32 * var(--px));
+    font-weight: 500;
+    margin-bottom: calc(20 * var(--px));
+
+    img { width: calc(24 * var(--px)); height: calc(24 * var(--px)); object-fit: contain; }
+  }
+}
+
+// ─── Donut chart ──────────────────────────────────────────────────────────────
+.donut-wrapper {
+  position: relative;
+  width:  calc(300 * var(--px));
+  height: calc(300 * var(--px));
+
+  img.layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-number {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(96 * var(--px));
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+}
+
+.donut-label {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(32 * var(--px));
+  color: #606060;
+  margin-top: calc(4 * var(--px));
+}
+
+// ─── Divider ──────────────────────────────────────────────────────────────────
+.divider {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(80 * var(--px));
+  height: 1px;
+  background: var(--border);
+}
+
+// ─── Bottom buttons (pinned to viewport bottom) ───────────────────────────────
+.bottom-left,
+.bottom-right {
+  position: absolute;
+  bottom: calc(16 * var(--px));
+  display: flex;
+  align-items: center;
+  gap: calc(24 * var(--px));
+}
+
+.bottom-left  { left:  calc(24 * var(--px)); }
+.bottom-right { right: calc(24 * var(--px)); }
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(8 * var(--px));
+  height: calc(48 * var(--px));
+  padding: calc(10 * var(--px)) calc(16 * var(--px));
+  background: var(--bg-btn);
+  backdrop-filter: blur(4px);
+  border: calc(2 * var(--px)) solid var(--purple);
+  border-radius: calc(24 * var(--px));
+  font-size: calc(24 * var(--px));
+  font-weight: 500;
+  color: var(--purple);
+  text-transform: capitalize;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+
+  img { width: calc(24 * var(--px)); height: calc(24 * var(--px)); object-fit: contain; }
+
+  &-nav {
+    padding: calc(10 * var(--px)) calc(20 * var(--px));
+    gap: calc(4 * var(--px));
+
+    img { width: calc(16 * var(--px)); height: auto; }
+  }
+}
