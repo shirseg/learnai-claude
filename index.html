@@ -6,6 +6,7 @@
   <title>Learn AI – Chapter 1 EP · 3. Polling</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.scss">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -30,22 +31,22 @@
       </div>
 
       <div class="viewers">
-        <img src="assets/icon-person.svg" alt="" />
+        <svg aria-hidden="true"><use href="assets/icons.svg#icon-user"/></svg>
         <span class="viewers-text">12 out of 23</span>
       </div>
 
       <div class="qr-wrap">
-        <div class="icon-btn">
-          <img src="assets/icon-qr.svg" alt="QR code" />
-        </div>
+        <button class="icon-btn" aria-label="QR code">
+          <svg aria-hidden="true"><use href="assets/icons.svg#icon-qr-code"/></svg>
+        </button>
       </div>
 
-      <div class="icon-btn">
-       <img src="assets/icon-collapse.svg" alt="Collapse" />
-      </div>
+      <button class="icon-btn" aria-label="Collapse">
+        <svg aria-hidden="true"><use href="assets/icons.svg#icon-minimize"/></svg>
+      </button>
 
       <button class="close-btn" aria-label="Close">
-        <img src="assets/icon-close.svg" alt="" />
+        <svg aria-hidden="true"><use href="assets/icons.svg#icon-close"/></svg>
       </button>
     </div>
   </header>
@@ -55,7 +56,7 @@
     <h1 class="main-title">Class poll in progress - submit your responses on your device.</h1>
 
     <div class="connected">
-      <img src="assets/icon-connected.svg" alt="" />
+      <svg aria-hidden="true"><use href="assets/icons.svg#icon-user"/></svg>
       <p class="connected-text"><strong>23</strong>&nbsp;<em>connected</em></p>
     </div>
 
@@ -64,11 +65,10 @@
       <div class="question">
         <div class="question-label">
           <span>Question 1</span>
-          <img src="assets/icon-info.svg" alt="Info" />
+          <svg aria-label="Info"><use href="assets/icons.svg#icon-info"/></svg>
         </div>
         <div class="donut-wrapper">
-          <img class="layer" src="assets/donut-bg.svg" alt="" />
-          <img class="layer" src="assets/donut-q1.svg" alt="" />
+          <canvas id="chart-q1"></canvas>
           <div class="donut-center">
             <div class="donut-number">14</div>
             <div class="donut-label">Answers</div>
@@ -80,11 +80,10 @@
       <div class="question">
         <div class="question-label">
           <span>Question 2</span>
-          <img src="assets/icon-info.svg" alt="Info" />
+          <svg aria-label="Info"><use href="assets/icons.svg#icon-info"/></svg>
         </div>
         <div class="donut-wrapper">
-          <img class="layer" src="assets/donut-bg.svg" alt="" />
-          <img class="layer" src="assets/donut-q2.svg" alt="" />
+          <canvas id="chart-q2"></canvas>
           <div class="donut-center">
             <div class="donut-number">9</div>
             <div class="donut-label">Answers</div>
@@ -101,7 +100,7 @@
   <div class="bottom-left">
     <button class="pill-btn">Show Results</button>
     <button class="pill-btn">
-      <img src="assets/icon-stop.svg" alt="" />
+      <svg aria-hidden="true"><use href="assets/icons.svg#icon-turn-off"/></svg>
       Turn Off Responses
     </button>
   </div>
@@ -109,14 +108,39 @@
   <!-- BOTTOM RIGHT -->
   <div class="bottom-right">
     <button class="pill-btn pill-btn-nav">
-      <img src="assets/icon-prev.svg" alt="" />
+      <svg aria-hidden="true"><use href="assets/icons.svg#icon-arrow-left"/></svg>
       Pre. Step
     </button>
     <button class="pill-btn pill-btn-nav">
       Next Step
-      <img src="assets/icon-next.svg" alt="" />
+      <svg aria-hidden="true"><use href="assets/icons.svg#icon-arrow-right"/></svg>
     </button>
   </div>
 
+
+  <script>
+    const chartOptions = {
+      cutout: '76%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      animation: { duration: 600 },
+      borderWidth: 0,
+    };
+
+    new Chart(document.getElementById('chart-q1'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{ data: [14, 9], backgroundColor: ['#7B59CA', 'rgba(163,148,214,0.18)'] }]
+      },
+      options: chartOptions,
+    });
+
+    new Chart(document.getElementById('chart-q2'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{ data: [9, 14], backgroundColor: ['#7B59CA', 'rgba(163,148,214,0.18)'] }]
+      },
+      options: chartOptions,
+    });
+  </script>
 </body>
 </html>
